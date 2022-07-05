@@ -32,14 +32,16 @@ let months = ["January", "February", "March", "April", "May", "June", "July", "A
 let date = new Date()
 document.querySelector(".date").innerHTML = ` ${days[date.getDay()]}  ${months[date.getMonth()]} ${date.getDate()}`
 
-let addButton = document.querySelector(".add-button")
-addButton.addEventListener("click", add);
+
 
 
 let todos = [];
 let completed = [];
+getFromLocalStorage();
+// localStorage.clear();
 
-
+let addButton = document.querySelector(".add-button")
+addButton.addEventListener("click", add);
 
 function add() {
     let todoName = document.querySelector(".add-input").value;
@@ -58,22 +60,34 @@ function add() {
 
 function renderTodos(todos) {
     console.log(localStorage)
-    document.querySelector(".pending-container").innerHTML = "";
+    document.querySelector(".pending-container").innerHTML = `<div class="pending-title">Pending Todos</div>`;
     todos.forEach(todo => {
         let newTodo = document.createElement("div");
         newTodo.innerHTML = `<div class="task">
         <div class="task-title">${todo.name}</div>
         <div class="buttons-container">
             <button id="${todo.id}" onclick="deletetodo(this.id)" class="delete-button">X</button>
-            <button id="${todo.id}" onclick="complete(this.id) class="complete-button">O</button>
+            <button id="${todo.id}" onclick="completeTodo(this.id)" class="complete-button">O</button>
         </div>
     </div>`
         document.querySelector(".pending-container").appendChild(newTodo);
     })
 
 }
+function renderCompleted(completed) {
+    document.querySelector(".completed-container").innerHTML = `<div class="completed-title">Completed Todos</div>`;
+    completed.forEach(obj => {
+        let newCompleted = document.createElement("div");
+        newCompleted.innerHTML = `<div class="task">
+        <div class="task-title">${obj.name}</div>
+        <div class="buttons-container">
+            <button id="${obj.id}" onclick="deletetodo(this.id)" class="delete-button">X</button>
+        </div>
+    </div>`
+        document.querySelector(".completed-container").appendChild(newCompleted);
+    })
+}
 
-// localStorage.clear();
 
 function addToLocalStorage(todos) {
     localStorage.setItem('todos', JSON.stringify(todos));
@@ -82,14 +96,17 @@ function addToLocalStorage(todos) {
 
 function getFromLocalStorage() {
     let localTodoslist = localStorage.getItem('todos');
+    let localCompletedList = localStorage.getItem('completed');
     if (localTodoslist) {
         todos = JSON.parse(localTodoslist);
         renderTodos(todos);
     }
-
+    if (localCompletedList) {
+        completed = JSON.parse(localCompletedList);
+        renderCompleted(completed)
+    }
 }
 
-getFromLocalStorage();
 
 function deletetodo(id) {
     for (let index in todos) {
@@ -99,4 +116,27 @@ function deletetodo(id) {
             addToLocalStorage(todos);
         }
     }
+    for (let index in completed) {
+        if (completed[index].id == id) {
+            completed.splice(index, 1);
+            renderCompleted(completed);
+            localStorage.setItem('completed', JSON.stringify(completed));
+            renderCompleted(completed);
+        }
+    }
 }
+
+
+function completeTodo(id) {
+    for (let index in todos) {
+        if (todos[index].id == id) {
+            let [completedTodo] = todos.splice(index, 1);
+            renderTodos(todos);
+            addToLocalStorage(todos);
+            completed.push(completedTodo);
+            localStorage.setItem('completed', JSON.stringify(completed));
+            renderCompleted(completed);
+        }
+    }
+}
+

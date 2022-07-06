@@ -110,7 +110,7 @@ body {
     margin: 10px 0;
     flex-wrap: wrap;
     font-weight: bold;
-
+    animation: slide 0.5s;
 
 }
 

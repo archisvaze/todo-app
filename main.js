@@ -46,6 +46,7 @@ addButton.addEventListener("click", add);
 document.querySelector(".add-input").addEventListener("keyup", (e) => {
     if (e.key == 'Enter') {
         add();
+        e.target.blur();
     }
 })
 

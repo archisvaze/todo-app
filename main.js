@@ -40,8 +40,15 @@ let completed = [];
 getFromLocalStorage();
 // localStorage.clear();
 
+
 let addButton = document.querySelector(".add-button")
 addButton.addEventListener("click", add);
+document.querySelector(".add-input").addEventListener("keyup", (e) => {
+    if (e.key == 'Enter') {
+        add();
+    }
+})
+
 
 function add() {
     let todoName = document.querySelector(".add-input").value;

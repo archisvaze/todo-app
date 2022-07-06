@@ -98,6 +98,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    animation: slideup 1s;
 }
 
 .task {
@@ -110,8 +111,6 @@ body {
     margin: 10px 0;
     flex-wrap: wrap;
     font-weight: bold;
-    animation: slide 0.5s;
-
 }
 
 .task-title {
@@ -227,10 +226,10 @@ body {
     margin-top: 10vh;
 }
 
-@keyframes slide {
+@keyframes slideup {
     0% {
         opacity: 0;
-        transform: translateY(-10vw);
+        transform: translateY(100vw);
     }
 
     100% {

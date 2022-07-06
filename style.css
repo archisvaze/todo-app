@@ -20,6 +20,7 @@ body {
 }
 
 .main {
+    max-width: 600px;
     overflow: hidden;
     width: 50vw;
     letter-spacing: 1px;

@@ -51,25 +51,26 @@ function add() {
             id: Date.now(),
             name: todoName
         }
-        todos.push(todo);
+        todos.unshift(todo);
         renderTodos(todos);
         addToLocalStorage(todos);
-        todoName = "";
+        todoName.value = " ";
     }
 }
 
 function renderTodos(todos) {
     console.log(localStorage)
-    document.querySelector(".pending-container").innerHTML = `<div class="pending-title">Pending Todos</div>`;
+    document.querySelector(".pending-container").innerHTML = `<div class="pending-title">Your Pending Todos:</div>`;
     todos.forEach(todo => {
         let newTodo = document.createElement("div");
         newTodo.innerHTML = `<div class="task">
+
+        <button type="checkbox" id="${todo.id}" onclick="completeTodo(this.id)" class="complete-button">✔</button>
+
         <div class="task-title">${todo.name}</div>
-        <div class="buttons-container">
-            <button id="${todo.id}" onclick="deletetodo(this.id)" class="delete-button">X</button>
-            <button id="${todo.id}" onclick="completeTodo(this.id)" class="complete-button">O</button>
-        </div>
+        <button id="${todo.id}" onclick="deletetodo(this.id)" class="delete-button">X</button>
     </div>`
+
         document.querySelector(".pending-container").appendChild(newTodo);
     })
 
@@ -78,10 +79,10 @@ function renderCompleted(completed) {
     document.querySelector(".completed-container").innerHTML = `<div class="completed-title">Completed Todos</div>`;
     completed.forEach(obj => {
         let newCompleted = document.createElement("div");
-        newCompleted.innerHTML = `<div class="task">
-        <div class="task-title">${obj.name}</div>
+        newCompleted.innerHTML = `<div id="${obj.id}x" class="completed-task">
+        <div class="completed-task-title">${obj.name}</div>
         <div class="buttons-container">
-            <button id="${obj.id}" onclick="deletetodo(this.id)" class="delete-button">X</button>
+            <button id="${obj.id}" onclick="deletetodo(this.id)" class="delete-button-completed"></button>
         </div>
     </div>`
         document.querySelector(".completed-container").appendChild(newCompleted);
@@ -118,10 +119,15 @@ function deletetodo(id) {
     }
     for (let index in completed) {
         if (completed[index].id == id) {
-            completed.splice(index, 1);
-            renderCompleted(completed);
-            localStorage.setItem('completed', JSON.stringify(completed));
-            renderCompleted(completed);
+            let idtag = (completed[index].id) + "x";
+            (document.getElementById(`${idtag}`)).style.animation = "slideout 0.5s forwards";
+            setTimeout(() => {
+                completed.splice(index, 1);
+                renderCompleted(completed);
+                localStorage.setItem('completed', JSON.stringify(completed));
+                renderCompleted(completed);
+            }, 1000)
+
         }
     }
 }

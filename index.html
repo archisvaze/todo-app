@@ -12,17 +12,11 @@
 <body>
 
     <div class="main">
-
-        <div class="controls">
-            <div class="red"></div>
-            <div class="yellow"></div>
-            <div class="grey"></div>
-        </div>
         <div class="header">TODOs</div>
         <div class="date"></div>
         <div class="add-container">
-            <input class="add-input" type="text">
-            <button class="add-button">Add</button>
+            <input onfocus="this.value=''" placeholder="Add New Todo" class="add-input" type="text">
+            <button class="add-button">+</button>
         </div>
 
         <div class="todos-container">

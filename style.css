@@ -1,24 +1,40 @@
+@import url("https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/cascadia-code.min.css");
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Cascadia Code', sans-serif;
+    color: white;
 }
 
 body {
-    background-color: rgb(46, 46, 46);
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url('https://source.unsplash.com/1600x900/?dark%20leaf');
+    background-color: rgb(44, 44, 44);
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 .main {
-  min-width: 300px;
-    background-color: white;
-    padding: 20px;
-    position: relative;
-    border-radius: 10px;
+    overflow: hidden;
+    width: 50vw;
+    letter-spacing: 1px;
+    border: 5px solid white;
+    padding: 30px 0px 0px 0px;
+    margin: 10px;
+    min-width: 365px;
+    border-radius: 16px;
+    box-shadow: 5px 10px 20px 5px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.1);
+
 }
 
 .header {
@@ -26,57 +42,206 @@ body {
 }
 
 .add-container {
-    margin: 20px 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
     display: flex;
-    justify-content: space-evenly;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-input {
+    width: 80%;
+    height: 40px;
+    border: none;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+.add-input::placeholder {
+    color: rgba(255, 255, 255, 0.80);
+}
+
+.add-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    padding: 10px;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.add-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.todos-container {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 30px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .task {
+    position: relative;
+    border-radius: 10px;
     display: flex;
-    border: 2px solid rgb(0, 0, 0);
     padding: 10px;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: flex-start;
     margin: 10px 0;
     flex-wrap: wrap;
+    font-weight: bold;
+
+
 }
 
-.controls {
-    position: absolute;
-    top: 8px;
-    left: 8px;
+.task-title {
+    color: black;
+    text-shadow: none;
+}
+
+.completed-task-title {
+    color: rgba(0, 0, 0, 0.7);
+    text-shadow: none;
+}
+
+.completed-task {
+    border-radius: 10px;
     display: flex;
-    gap: 5px;
-
-}
-
-.red {
-    width: 10px;
-    height: 10px;
-    background-color: red;
-    border-radius: 5px;
-}
-
-.yellow {
-    width: 10px;
-    height: 10px;
-    background-color: yellow;
-    border-radius: 5px;
-}
-
-.grey {
-    width: 10px;
-    height: 10px;
-    background-color: grey;
-    border-radius: 5px;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 14px;
 }
 
 .date {
     text-align: center;
+    font-size: 26px;
 }
 
-.todos-container{
-    height: 80%;
+
+.delete-button {
+    position: absolute;
+    right: 10px;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    font-size: 9px;
+    padding: 5px;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    color: rgb(255, 38, 38);
+}
+
+.delete-button:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgba(255, 0, 0, 0.6);
+}
+
+.delete-button-completed {
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10px;
+    height: 10px;
+    border: none;
+    background-color: rgba(255, 39, 39, 0.129);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    color: rgba(255, 39, 39, 0);
+}
+
+.delete-button-completed:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgba(255, 0, 0, 0.6);
+}
+
+.complete-button {
+    margin-right: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    font-size: 9px;
+    padding: 5px;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    color: rgb(0, 242, 32);
+}
+
+.complete-button:hover {
+    color: white;
+    background-color: rgba(0, 200, 27, 0.75);
+}
+
+.pending-title {
+    font-weight: bold;
+    font-size: 16px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid rgba(0, 0, 0, 0.2);
+    margin-bottom: 7px;
+    color: black;
+    text-shadow: none;
+}
+
+.completed-title {
+    color: rgba(0, 0, 0, 0.7);
+    text-shadow: none;
+    padding-bottom: 10px;
+    border-bottom: 3px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 7px;
+}
+
+.completed-container {
+    margin-top: 10vh;
+}
+
+@keyframes slide {
+    0% {
+        opacity: 0;
+        transform: translateY(-10vw);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideout {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(100vw);
+    }
 }

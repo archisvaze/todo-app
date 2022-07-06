@@ -46,7 +46,7 @@ addButton.addEventListener("click", add);
 function add() {
     let todoName = document.querySelector(".add-input").value;
     //create todo
-    if (todoName !== " ") {
+    if (todoName !== " " && todoName !== "") {
         let todo = {
             id: Date.now(),
             name: todoName
@@ -54,8 +54,9 @@ function add() {
         todos.unshift(todo);
         renderTodos(todos);
         addToLocalStorage(todos);
-        todoName.value = " ";
+        document.querySelector(".add-input").value = "";
     }
+
 }
 
 function renderTodos(todos) {

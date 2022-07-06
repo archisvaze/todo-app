@@ -41,6 +41,10 @@ body {
     text-align: center;
 }
 
+.date {
+    margin: 20px 0 30px 0;
+}
+
 .add-container {
     margin-top: 20px;
     margin-bottom: 20px;

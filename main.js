@@ -135,7 +135,7 @@ function deletetodo(id) {
                 renderCompleted(completed);
                 localStorage.setItem('completed', JSON.stringify(completed));
                 renderCompleted(completed);
-            }, 1000)
+            }, 500)
 
         }
     }

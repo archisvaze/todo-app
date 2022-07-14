@@ -116,6 +116,8 @@ body {
 .task-title {
     color: black;
     text-shadow: none;
+    width: 80%;
+    word-wrap: break-word;
 }
 
 
@@ -123,6 +125,8 @@ body {
 .completed-task-title {
     color: rgba(0, 0, 0, 0.7);
     text-shadow: none;
+    width: 80%;
+    word-wrap: break-word;
 }
 
 .completed-task {

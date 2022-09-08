@@ -1,4 +1,4 @@
-## TODO App
+## TODO App using vanilla JS, html, css
 
 Site Link : https://strong-centaur-db028a.netlify.app/  
 
